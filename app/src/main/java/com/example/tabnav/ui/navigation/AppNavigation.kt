@@ -17,6 +17,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -45,8 +46,7 @@ class AppNavigation : ComponentActivity() {
                         Surface(
                             shape = RoundedCornerShape(24.dp),
                             tonalElevation = 8.dp,
-                            shadowElevation = 8.dp,
-                            modifier = Modifier.height(100.dp)
+                            shadowElevation = 8.dp
                         ) {
                             NavigationBar(containerColor = MaterialTheme.colorScheme.surfaceContainer) {
                                 TabNavigationItem(HomeTab)
@@ -69,19 +69,20 @@ private fun RowScope.TabNavigationItem(tab: Tab) {
     NavigationBarItem(
 //        selected = tabNavigator.current == tab,
 //        onClick = { tabNavigator.current = tab },
-//        icon = { Icon(painter = tab.options.icon!!, contentDescription = tab.options.title) }
+        icon = { Icon(painter = tab.options.icon!!, contentDescription = tab.options.title, tint = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface) },
+        label={Text(tab.options.title, color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface)},
         selected = isSelected,
         onClick = { tabNavigator.current = tab },
-        icon = {
-            Box(
-                modifier = Modifier
-                    .padding(16.dp, 8.dp)
-                    .background(if (isSelected) MaterialTheme.colorScheme.surfaceVariant else Color.Transparent),
-
-            ) {
-                Icon(painter = tab.options.icon!!, contentDescription = tab.options.title, tint = if (isSelected) Color.White else MaterialTheme.colorScheme.onSurface)
-            }
-        },
+//        icon = {
+//            Box(
+//                modifier = Modifier
+//                    .padding(16.dp, 8.dp)
+//                    .background(if (isSelected) MaterialTheme.colorScheme.surfaceVariant else Color.Transparent),
+//
+//            ) {
+//                Icon(painter = tab.options.icon!!, contentDescription = tab.options.title, tint = if (isSelected) Color.White else MaterialTheme.colorScheme.onSurface)
+//            }
+//        },
         colors = NavigationBarItemDefaults.colors(indicatorColor = MaterialTheme.colorScheme.surfaceVariant)
     )
 
