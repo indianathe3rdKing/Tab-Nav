@@ -17,6 +17,7 @@ import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.example.tabnav.ui.components.ButtonMode
 import com.example.tabnav.ui.components.ButtonModeInfo
+import com.example.tabnav.ui.components.ClickButton
 
 
 object HomeTab : Tab {
@@ -44,7 +45,8 @@ object HomeTab : Tab {
             Text(text = "Home")
             Spacer(modifier = Modifier.height(40.dp))
             ButtonMode(ButtonModeInfo("Single Click", "Repeatedly clicks on the same area"))
-
+            Spacer(modifier = Modifier.height(10.dp))
+            ClickButton()
         }
     }
 }
